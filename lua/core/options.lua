@@ -19,11 +19,13 @@ vim.o.scrolloff = 10 -- minimal number of screen lines to keep above and below t
 vim.o.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
 vim.wo.number = true -- Make line numbers default
 vim.o.relativenumber = true -- set relative numbered lines
-vim.o.numberwidth = 4 -- set number column width to 2 {default 4}
+
+vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
 vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.o.tabstop = 2 -- insert n spaces for a tab
-vim.o.softtabstop = 4 -- Number of spaces that a tab counts for while performing editing operations
+vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations
 vim.o.expandtab = false -- convert tabs to spaces
+
 vim.o.cursorline = false -- highlight the current line
 vim.o.splitbelow = true -- force all horizontal splits to go below current window
 vim.o.splitright = true -- force all vertical splits to go to the right of current window
