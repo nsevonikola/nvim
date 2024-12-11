@@ -23,8 +23,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	require("plugins.neo-tree"),
 	require("plugins.colorscheme"),
-	require("plugins.bufferline"),
-	-- require("plugins.lualine"),
+	--require("plugins.bufferline"),
+	require("plugins.lualine"),
 	require("plugins.treesitter"),
 	require("plugins.telescope"),
 	require("plugins.lsp"),
@@ -36,5 +36,6 @@ require("lazy").setup({
 	require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
 	require("plugins.hbac"),
+	--require("plugins.smart-open"),
 	require("plugins.misc"),
 })

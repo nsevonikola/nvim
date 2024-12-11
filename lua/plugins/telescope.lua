@@ -24,7 +24,7 @@ return {
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 
-		require("telescope").setup({
+		telescope.setup({
 			defaults = {
 				mappings = {
 					i = {
@@ -45,7 +45,7 @@ return {
 				buffers = {
 					initial_mode = "normal",
 					sort_lastused = true,
-					-- sort_mru = true,
+					sort_mru = true,
 					mappings = {
 						n = {
 							["d"] = actions.delete_buffer,
