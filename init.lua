@@ -35,5 +35,6 @@ require("lazy").setup({
 	require("plugins.indent-blankline"),
 	require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
+	require("plugins.hbac"),
 	require("plugins.misc"),
 })
