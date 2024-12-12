@@ -1,4 +1,4 @@
-vim.o.hlsearch = false -- Set highlight on search
+vim.o.hlsearch = true -- Set highlight on search
 vim.o.mouse = "a" -- Enable mouse mode
 vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim.
 vim.o.breakindent = true -- Enable break indent
