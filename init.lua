@@ -33,6 +33,7 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.alpha"),
 	require("plugins.indent-blankline"),
+	require("plugins.hlchunk"),
 	require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
 	require("plugins.hbac"),
