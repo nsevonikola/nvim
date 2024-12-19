@@ -36,6 +36,7 @@ require("lazy").setup({
 	require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
 	require("plugins.hbac"),
+	require("plugins.fine-cmdline"),
 	--require("plugins.smart-open"),
 	require("plugins.misc"),
 })

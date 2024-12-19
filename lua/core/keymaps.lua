@@ -13,6 +13,8 @@ function opts(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
 
+vim.api.nvim_set_keymap("n", ";", "<cmd>FineCmdline<CR>", { noremap = true })
+
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -39,6 +41,9 @@ vim.keymap.set("n", "x", '"_x', opts())
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts())
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts())
 
+-- Search
+--vim.keymap.set("v", "/", "y/<C-v>", opts("Search selected"))
+
 -- Find and center
 vim.keymap.set("n", "n", "nzzzv", opts("Next search"))
 vim.keymap.set("n", "N", "Nzzzv", opts("Prev search"))
@@ -53,14 +58,14 @@ vim.keymap.set("n", "N", "Nzzzv", opts("Prev search"))
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts("Next Buffer"))
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts("Prev buffer"))
 -- vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts())   -- close buffer
-vim.keymap.set("n", "<C-w>", ":Bdelete!<CR>", opts("Close buffer"))           -- close buffer
+vim.keymap.set("n", "<C-w>", ":Bdelete!<CR>", opts("Close buffer")) -- close buffer
 vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts(" [B]uffer [N]we")) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>bs", "<C-w>v", opts("[B]uffer [S]plit Vertically"))   -- split window vertically
+vim.keymap.set("n", "<leader>bs", "<C-w>v", opts("[B]uffer [S]plit Vertically")) -- split window vertically
 vim.keymap.set("n", "<leader>bh", "<C-w>s", opts("[B]uffer Split [H]orizontally")) -- split window horizontally
-vim.keymap.set("n", "<leader>be", "<C-w>=", opts("[B]uffer Split [E]qually"))      -- make split windows equal width & height
-vim.keymap.set("n", "<leader>bq", ":close<CR>", opts("[B]uffer Split [Q]uit]"))    -- close current split window
+vim.keymap.set("n", "<leader>be", "<C-w>=", opts("[B]uffer Split [E]qually")) -- make split windows equal width & height
+vim.keymap.set("n", "<leader>bq", ":close<CR>", opts("[B]uffer Split [Q]uit]")) -- close current split window
 
 -- Increment/decrement numbers
 vim.keymap.set("n", "<leader>+", "<C-a>", opts("Increment numbers")) -- increment
@@ -73,10 +78,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts())
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts())
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts())   -- open new tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts()) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts()) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts())     --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts())     --  go to previous tab
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts()) --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts()) --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts())
@@ -102,6 +107,9 @@ vim.keymap.set("n", "<leader>j", "*``cgn", opts())
 -- Explicitly yank to system clipboard (highlighted and entire row)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- CodeActions
+vim.keymap.set("n", "<leader>co", ":TSToolsSortImports<CR>")
 
 -- Toggle diagnostics
 local diagnostics_active = true
