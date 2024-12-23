@@ -58,7 +58,7 @@ vim.keymap.set("n", "N", "Nzzzv", opts("Prev search"))
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts("Next Buffer"))
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts("Prev buffer"))
 -- vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts())   -- close buffer
-vim.keymap.set("n", "<C-w>", ":Bdelete!<CR>", opts("Close buffer")) -- close buffer
+vim.keymap.set("n", "<C-w>", ":bdelete!<CR>", opts("Close buffer"))           -- close buffer
 vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts(" [B]uffer [N]we")) -- new buffer
 
 -- Window management
