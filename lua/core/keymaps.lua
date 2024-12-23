@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- For conciseness
-function opts(desc)
+local function opts(desc)
 	if desc == nil then
 		return { noremap = true, silent = true }
 	end
@@ -58,7 +58,7 @@ vim.keymap.set("n", "N", "Nzzzv", opts("Prev search"))
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts("Next Buffer"))
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts("Prev buffer"))
 -- vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts())   -- close buffer
-vim.keymap.set("n", "<C-w>", ":bdelete!<CR>", opts("Close buffer"))           -- close buffer
+--vim.keymap.set("n", "<C-w>", ":bdelete!<CR>", opts("Close buffer")) -- close buffer
 vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts(" [B]uffer [N]we")) -- new buffer
 
 -- Window management
@@ -66,6 +66,8 @@ vim.keymap.set("n", "<leader>bs", "<C-w>v", opts("[B]uffer [S]plit Vertically"))
 vim.keymap.set("n", "<leader>bh", "<C-w>s", opts("[B]uffer Split [H]orizontally")) -- split window horizontally
 vim.keymap.set("n", "<leader>be", "<C-w>=", opts("[B]uffer Split [E]qually")) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>bq", ":close<CR>", opts("[B]uffer Split [Q]uit]")) -- close current split window
+vim.keymap.set("n", "<leader>bq", ":close<CR>", opts("[B]uffer Split [Q]uit]")) -- close current split window
+vim.keymap.set("n", "<C-w>", ":close<CR>", opts("[B]uffer Split [Q]uit]")) -- close current split window
 
 -- Increment/decrement numbers
 vim.keymap.set("n", "<leader>+", "<C-a>", opts("Increment numbers")) -- increment
@@ -118,9 +120,9 @@ vim.keymap.set("n", "<leader>do", function()
 	diagnostics_active = not diagnostics_active
 
 	if diagnostics_active then
-		vim.diagnostic.enable(0)
+		vim.diagnostic.enable(false)
 	else
-		vim.diagnostic.disable(0)
+		vim.diagnostic.disable(false)
 	end
 end)
 
