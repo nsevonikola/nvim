@@ -38,6 +38,6 @@ require("lazy").setup({
 	require("plugins.harpoon"),
 	require("plugins.hbac"),
 	require("plugins.fine-cmdline"),
-	--require("plugins.smart-open"),
+	require("plugins.smart-open"),
 	require("plugins.misc"),
 })
