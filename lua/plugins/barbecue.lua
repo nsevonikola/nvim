@@ -8,5 +8,6 @@ return {
 	},
 	opts = {
 		-- configurations go here
+		show_navic = false,
 	},
 }
