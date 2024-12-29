@@ -15,24 +15,24 @@ vim.opt.termguicolors = true -- set termguicolors to enable highlight groups
 vim.o.whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed to travel to prev/next line
 vim.o.wrap = false -- display lines as one long line
 vim.o.linebreak = true -- companion to wrap don't split words
-vim.o.scrolloff = 10 -- minimal number of screen lines to keep above and below the cursor
+vim.o.scrolloff = 14 -- minimal number of screen lines to keep above and below the cursor
 vim.o.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
 vim.wo.number = true -- Make line numbers default
 vim.o.relativenumber = true -- set relative numbered lines
 
 -- Grieg
-vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
-vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
-vim.o.tabstop = 2 -- insert n spaces for a tab
-vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations
-vim.o.expandtab = false -- convert tabs to spaces
+-- vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
+-- vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
+-- vim.o.tabstop = 2 -- insert n spaces for a tab
+-- vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations
+-- vim.o.expandtab = false -- convert tabs to spaces
 
 -- Home
---vim.o.numberwidth = 4                           -- set number column width to 2 {default 4}
---vim.o.shiftwidth = 4                            -- the number of spaces inserted for each indentation
---vim.o.tabstop = 4                               -- insert n spaces for a tab
---vim.o.softtabstop = 4                           -- Number of spaces that a tab counts for while performing editing operations
---vim.o.expandtab = true                          -- convert tabs to spaces
+vim.o.numberwidth = 4 -- set number column width to 2 {default 4}
+vim.o.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.o.tabstop = 4 -- insert n spaces for a tab
+vim.o.softtabstop = 4 -- Number of spaces that a tab counts for while performing editing operations
+vim.o.expandtab = true -- convert tabs to spaces
 
 vim.o.cursorline = true -- highlight the current line
 vim.o.splitbelow = true -- force all horizontal splits to go below current window
@@ -40,7 +40,7 @@ vim.o.splitright = true -- force all vertical splits to go to the right of curre
 vim.o.swapfile = false -- creates a swapfile
 vim.o.smartindent = true -- make indenting smarter again
 vim.o.showmode = true -- we don't need to see things like -- INSERT -- anymore
-vim.o.showtabline = 2 -- always show tabs
+vim.o.showtabline = 0 -- 0: never, 1: when multiple tabs,2: always show tabs
 vim.o.backspace = "indent,eol,start" -- allow backspace on
 vim.o.pumheight = 10 -- pop up menu height
 vim.o.conceallevel = 0 -- so that `` is visible in markdown files
