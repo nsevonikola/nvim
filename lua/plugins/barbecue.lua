@@ -6,8 +6,11 @@ return {
 		"SmiteshP/nvim-navic",
 		"nvim-tree/nvim-web-devicons", -- optional dependency
 	},
-	opts = {
-		-- configurations go here
-		show_navic = false,
-	},
+	config = function()
+		require("barbecue").setup({
+			-- configurations go here
+			show_navic = false,
+			show_modified = true,
+		})
+	end,
 }
