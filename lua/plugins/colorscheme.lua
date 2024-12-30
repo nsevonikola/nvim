@@ -30,6 +30,20 @@ return {
 				light = "lotus",
 			},
 		})
+
+		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#1a1a21" })
+		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#1a1a21" })
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#7e9cd8" }) -- Directory names
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#bb9f70" }) -- Directory icons
+		vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#dcd7ba" }) -- File names
+		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#dcd7ba" }) -- File icons
+		vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = "#54546d" }) -- Indent markers
+		vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = "#98bb6c" }) -- Git added files
+		vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = "#7fb4ca" }) -- Git modified files
+		vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = "#e46876" }) -- Git deleted files
+
+		vim.api.nvim_set_hl(0, "VertSplit", { bg = "NONE", fg = "NONE" }) -- Make the vertical split line transparent
+
 		vim.cmd("colorscheme kanagawa-wave")
 	end,
 }
