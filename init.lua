@@ -41,7 +41,6 @@ require("lazy").setup({
 	require("plugins.harpoon"),
 	require("plugins.smart-open"),
 	require("plugins.hbac"),
-	require("plugins.fine-cmdline"),
 	require("plugins.barbecue"), -- breadcrumbs
 	require("plugins.misc"),
 })
