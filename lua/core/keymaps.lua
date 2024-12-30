@@ -13,9 +13,6 @@ local function opts(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
 
--- vim.keymap.set({ "n", "v" }, ";", ":", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", ";", "<cmd>FineCmdline<CR>", { noremap = true })
-
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 

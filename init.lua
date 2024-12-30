@@ -25,6 +25,7 @@ require("lazy").setup({
 	require("plugins.colorscheme"),
 	-----require("plugins.bufferline"),
 	require("plugins.lazygit"),
+	require("plugins.noice"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
 	require("plugins.treesitter-context"),
