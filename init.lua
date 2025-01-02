@@ -39,7 +39,7 @@ require("lazy").setup({
 	require("plugins.hlchunk"),
 	require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
-	require("plugins.smart-open"),
+	--require("plugins.smart-open"),
 	require("plugins.hbac"),
 	require("plugins.barbecue"), -- breadcrumbs
 	require("plugins.misc"),
