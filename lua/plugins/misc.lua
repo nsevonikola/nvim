@@ -1,6 +1,10 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
 	{
+		-- New setup? Run :Copilot setop
+		"github/copilot.vim",
+	},
+	{
 		-- autoclose tags
 		"windwp/nvim-ts-autotag",
 		config = function()

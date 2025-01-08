@@ -21,18 +21,18 @@ vim.wo.number = true -- Make line numbers default
 vim.o.relativenumber = true -- set relative numbered lines
 
 -- Grieg
--- vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
--- vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
--- vim.o.tabstop = 2 -- insert n spaces for a tab
--- vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations
--- vim.o.expandtab = false -- convert tabs to spaces
+vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
+vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.o.tabstop = 2 -- insert n spaces for a tab
+vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations
+vim.o.expandtab = false -- convert tabs to spaces
 
 -- Home
-vim.o.numberwidth = 4 -- set number column width to 2 {default 4}
-vim.o.shiftwidth = 4 -- the number of spaces inserted for each indentation
-vim.o.tabstop = 4 -- insert n spaces for a tab
-vim.o.softtabstop = 4 -- Number of spaces that a tab counts for while performing editing operations
-vim.o.expandtab = true -- convert tabs to spaces
+-- vim.o.numberwidth = 4 -- set number column width to 2 {default 4}
+-- vim.o.shiftwidth = 4 -- the number of spaces inserted for each indentation
+-- vim.o.tabstop = 4 -- insert n spaces for a tab
+-- vim.o.softtabstop = 4 -- Number of spaces that a tab counts for while performing editing operations
+-- vim.o.expandtab = true -- convert tabs to spaces
 
 vim.o.cursorline = true -- highlight the current line
 vim.o.splitbelow = true -- force all horizontal splits to go below current window
@@ -51,3 +51,10 @@ vim.opt.shortmess:append("c") -- don't give |ins-completion-menu| messages
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 -- vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- separate vim plugins from neovim in case vim still in use
+
+-- Change the defatult copilot keybindings
+vim.keymap.set("i", "<C-y>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true

@@ -37,7 +37,7 @@ require("lazy").setup({
 	require("plugins.alpha"),
 	require("plugins.indent-blankline"),
 	require("plugins.hlchunk"),
-	require("plugins.typescript-tools"),
+	--require("plugins.typescript-tools"),
 	require("plugins.harpoon"),
 	--require("plugins.smart-open"),
 	require("plugins.hbac"),
