@@ -24,6 +24,9 @@ return {
 		"tpope/vim-rhubarb",
 	},
 	{
+		"wurli/visimatch.nvim",
+	},
+	{
 		-- Hints keybinds
 		"folke/which-key.nvim",
 		opts = {
