@@ -1,20 +1,13 @@
 return {
 	"folke/noice.nvim",
+
 	event = "VeryLazy",
 	dependencies = {
 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 		"MunifTanjim/nui.nvim",
-		-- OPTIONAL:
-		--   `nvim-notify` is only needed, if you want to use the notification view.
-		--   If not available, we use `mini` as the fallback
-		"rcarriga/nvim-notify",
 	},
 	config = function()
 		require("noice").setup({
-			-- notify = {
-			-- 	top_down = false,
-			-- },
-			-- messages = { view = "mini", view_warn = "mini" },
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
@@ -23,6 +16,12 @@ return {
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 				},
 			},
+			notify = {
+				enabled = false,
+			},
+			messages = {
+				enabled = false,
+			},
 			-- you can enable a preset for easier configuration
 			presets = {
 				bottom_search = false, -- use a classic bottom cmdline for search
@@ -30,30 +29,6 @@ return {
 				long_message_to_split = true, -- long messages will be sent to a split
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
 				lsp_doc_border = false, -- add a border to hover docs and signature help
-			},
-			routes = {
-				{ -- doesnt work
-					filter = {
-						event = "msg_show",
-						kind = "written",
-					},
-					opts = { skip = true },
-				},
-				{
-					filter = {
-						event = "msg_show",
-						kind = "saved",
-					},
-					opts = { skip = true },
-				},
-				{
-					filter = {
-						event = "msg_show",
-						kind = "",
-						find = "nohlsearch",
-					},
-					opts = { skip = true },
-				},
 			},
 		})
 	end,
