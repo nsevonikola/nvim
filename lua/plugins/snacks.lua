@@ -10,6 +10,18 @@ return {
 		picker = {
 			enabled = true,
 		},
+		matcher = {
+			fuzzy = true,       -- use fuzzy matching
+			smartcase = true,   -- use smartcase
+			ignorecase = true,  -- use ignorecase
+			sort_empty = false, -- sort results when the search string is empty
+			filename_bonus = true, -- give bonus for matching file names (last part of the path)
+			file_pos = true,    -- support patterns like `file:line:col` and `file:line`
+			-- the bonusses below, possibly require string concatenation and path normalization,
+			-- so this can have a performance impact for large lists and increase memory usage
+			cwd_bonus = false, -- give bonus for matching files in the cwd
+			frecency = true, -- frecency bonus
+		},
 		-- animate = { enabled = true },
 		dashboard = {
 			enabled = true,
@@ -20,7 +32,28 @@ return {
 		{
 			"<leader><space>",
 			function()
-				Snacks.picker.buffers()
+				Snacks.picker.buffers({
+					-- I always want my buffers picker to start in normal mode
+					on_show = function()
+						vim.cmd.stopinsert()
+					end,
+					finder = "buffers",
+					format = "buffer",
+					hidden = false,
+					unloaded = true,
+					current = true,
+					sort_lastused = true,
+					win = {
+						input = {
+							keys = {
+								["d"] = "bufdelete",
+							},
+						},
+						list = { keys = { ["d"] = "bufdelete" } },
+					},
+					-- In case you want to override the layout for this keymap
+					-- layout = "ivy",
+				})
 			end,
 			desc = "Buffers",
 		},
