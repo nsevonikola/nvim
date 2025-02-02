@@ -13,7 +13,6 @@ end ---@diagnostic disable-next-line: undefined-field
 
 vim.opt.rtp:prepend(lazypath)
 
-
 --  To check the current status of your plugins, run
 --    :Lazy
 --
@@ -24,10 +23,8 @@ vim.opt.rtp:prepend(lazypath)
 --
 require("lazy").setup({
 	require("plugins.neo-tree"),
-	--require("plugins.alpha"),
 	require("plugins.snacks"),
 	require("plugins.colorscheme"),
-	-----require("plugins.bufferline"),
 	require("plugins.lazygit"),
 	require("plugins.noice"),
 	require("plugins.lualine"),
@@ -44,6 +41,6 @@ require("lazy").setup({
 	--require("plugins.harpoon"),
 	--require("plugins.smart-open"),
 	require("plugins.hbac"),
-	require("plugins.barbecue"), -- breadcrumbs
+	require("plugins.barbecue"),
 	require("plugins.misc"),
 })
