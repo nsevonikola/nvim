@@ -10,12 +10,13 @@ return {
 		picker = {
 			enabled = true,
 		},
-		animate = { enabled = true },
+		-- animate = { enabled = true },
 		dashboard = {
 			enabled = true,
 		},
 	},
 	keys = {
+		-- Buffers
 		{
 			"<leader><space>",
 			function()
@@ -23,6 +24,21 @@ return {
 			end,
 			desc = "Buffers",
 		},
+		{
+			"<leader>sb",
+			function()
+				Snacks.picker.lines()
+			end,
+			desc = "Buffer Lines",
+		},
+		{
+			"<leader>sB",
+			function()
+				Snacks.picker.grep_buffers()
+			end,
+			desc = "Grep Open Buffers",
+		},
+		-- Find
 		{
 			"<leader>/",
 			function()
@@ -37,7 +53,6 @@ return {
 			end,
 			desc = "Command History",
 		},
-		-- find
 		{
 			"<C-p>",
 			function()
@@ -53,11 +68,11 @@ return {
 			desc = "Find Files",
 		},
 		{
-			"<leader>sb",
+			"<leader>sr",
 			function()
-				Snacks.picker.buffers()
+				Snacks.picker.recent()
 			end,
-			desc = "Buffers",
+			desc = "Recent",
 		},
 		-- {
 		-- 	"<leader>c",
@@ -73,18 +88,17 @@ return {
 		-- 	end,
 		-- 	desc = "Find Git Files",
 		-- },
-		{
-			"<leader>sr",
-			function()
-				Snacks.picker.recent()
-			end,
-			desc = "Recent",
-		},
 		-- git
 		{
 			"<leader>gl",
 			function()
-				Snacks.picker.git_log()
+				Snacks.picker.git_log({
+					finder = "git_log",
+					format = "git_log",
+					preview = "git_show",
+					confirm = "git_checkout",
+					layout = "vertical",
+				})
 			end,
 			desc = "Git Log",
 		},
@@ -93,23 +107,19 @@ return {
 			function()
 				Snacks.picker.git_status()
 			end,
-			desc = "Git Status",
+			desc = "[G]it [S]tatus",
 		},
+		{
+			"<leader>gb",
+			function()
+				Snacks.picker.git_branches({
+					layout = "select",
+				})
+			end,
+			desc = "[G]it [B]ranches",
+		},
+
 		-- Grep
-		{
-			"<leader>sb",
-			function()
-				Snacks.picker.lines()
-			end,
-			desc = "Buffer Lines",
-		},
-		{
-			"<leader>sB",
-			function()
-				Snacks.picker.grep_buffers()
-			end,
-			desc = "Grep Open Buffers",
-		},
 		{
 			"<leader>sg",
 			function()
@@ -125,7 +135,8 @@ return {
 			desc = "Visual selection or word",
 			mode = { "n", "x" },
 		},
-		-- search
+
+		-- Search
 		{
 			'<leader>s"',
 			function()
@@ -185,7 +196,9 @@ return {
 		{
 			"<leader>sk",
 			function()
-				Snacks.picker.keymaps()
+				Snacks.picker.keymaps({
+					layout = "vertical",
+				})
 			end,
 			desc = "Keymaps",
 		},
