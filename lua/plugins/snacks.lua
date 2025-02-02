@@ -11,12 +11,12 @@ return {
 			enabled = true,
 		},
 		matcher = {
-			fuzzy = true,       -- use fuzzy matching
-			smartcase = true,   -- use smartcase
-			ignorecase = true,  -- use ignorecase
+			fuzzy = true, -- use fuzzy matching
+			smartcase = true, -- use smartcase
+			ignorecase = true, -- use ignorecase
 			sort_empty = false, -- sort results when the search string is empty
 			filename_bonus = true, -- give bonus for matching file names (last part of the path)
-			file_pos = true,    -- support patterns like `file:line:col` and `file:line`
+			file_pos = true, -- support patterns like `file:line:col` and `file:line`
 			-- the bonusses below, possibly require string concatenation and path normalization,
 			-- so this can have a performance impact for large lists and increase memory usage
 			cwd_bonus = false, -- give bonus for matching files in the cwd
@@ -145,9 +145,7 @@ return {
 		{
 			"<leader>gb",
 			function()
-				Snacks.picker.git_branches({
-					layout = "select",
-				})
+				Snacks.picker.git_branches({ layout = "select" })
 			end,
 			desc = "[G]it [B]ranches",
 		},

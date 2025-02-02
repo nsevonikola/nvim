@@ -8,27 +8,51 @@ return {
 		harpoon:setup({})
 
 		-- Use Telescope as a UI
-		local conf = require("telescope.config").values
-		local function toggle_telescope(harpoon_files)
+		local function toggle_picker(harpoon_files)
 			local file_paths = {}
 			for _, item in ipairs(harpoon_files.items) do
-				table.insert(file_paths, item.value)
+				table.insert(file_paths, {
+					text = item.value,
+					file = item.value,
+				})
 			end
 
-			require("telescope.pickers")
-					.new({}, {
-						prompt_title = "Harpoon",
-						finder = require("telescope.finders").new_table({
-							results = file_paths,
-						}),
-						previewer = conf.file_previewer({}),
-						sorter = conf.generic_sorter({}),
-					})
-					:find()
+			-- Register the custom source
+			Snacks.picker.sources.harpoon_source = {
+				finder = function()
+					return file_paths
+				end,
+				format = "text",
+			}
+
+			-- Define custom actions
+			local actions = {
+				harpoon_delete = {
+					fn = function(picker, item)
+						-- Your logic to delete the harpooned item
+						print("Deleting item:", item.text)
+					end,
+					desc = "Delete Harpooned Item",
+				},
+			}
+
+			Snacks.picker.pick("harpoon_source", {
+				title = "Harpooni",
+				prompt = ">",
+				show_empty = true,
+				--actions = actions,
+				win = {
+					list = {
+						keys = {
+							["dd"] = "harpoon_delete", -- Bind 'dd' to delete action
+						},
+					},
+				},
+			})
 		end
 
 		vim.keymap.set("n", "<leader>hl", function()
-			toggle_telescope(harpoon:list())
+			toggle_picker(harpoon:list())
 		end, { desc = "Open harpoon window" })
 
 		-- Default UI
