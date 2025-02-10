@@ -33,14 +33,14 @@ return {
 
 		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#1a1a21" })
 		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#1a1a21" })
-		vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#b8b0b0" }) -- Directory names
-		vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#f0a44d" }) -- Directory icons
-		vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#b8b0b0" }) -- File names
-		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#b8b0b0" }) -- File icons
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#d4c9b2" }) -- Directory names
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#b8b8b8" }) -- Directory icons
+		vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#b8b8b8" })    -- File names
+		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#b8b8b8" })    -- File icons
 		vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = "#54546d" }) -- Indent markers
-		vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = "#98bb6c" }) -- Git added files
+		vim.api.nvim_set_hl(0, "NeoTreeGitAdded", { fg = "#98bb6c" })    -- Git added files
 		vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = "#7fb4ca" }) -- Git modified files
-		vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = "#e46876" }) -- Git deleted files
+		vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = "#e46876" })  -- Git deleted files
 
 		vim.api.nvim_set_hl(0, "VertSplit", { bg = "NONE", fg = "NONE" }) -- Make the vertical split line transparent
 
