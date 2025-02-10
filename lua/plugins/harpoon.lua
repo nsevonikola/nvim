@@ -7,7 +7,7 @@ return {
 
 		harpoon:setup({})
 
-		-- Use Telescope as a UI
+		-- Use Snacks.picker as a UI
 		local function toggle_picker(harpoon_files)
 			local file_paths = {}
 			for _, item in ipairs(harpoon_files.items) do
