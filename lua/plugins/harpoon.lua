@@ -2,57 +2,88 @@ return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- Follow this to make deletion work
+	-- https://github.com/folke/snacks.nvim/discussions/1058
 	config = function()
 		local harpoon = require("harpoon")
 
 		harpoon:setup({})
 
-		-- Use Snacks.picker as a UI
-		local function toggle_picker(harpoon_files)
-			local file_paths = {}
-			for _, item in ipairs(harpoon_files.items) do
-				table.insert(file_paths, {
-					text = item.value,
-					file = item.value,
-				})
-			end
-
-			-- Register the custom source
-			Snacks.picker.sources.harpoon_source = {
-				finder = function()
-					return file_paths
+		local sPicker = require("snacks.picker")
+		sPicker.harpoon = function()
+			Snacks.picker.pick({
+				items = vim.tbl_map(function(item, idx)
+					return {
+						file = item.value,
+						text = item.value,
+						idx = idx, -- Store original index
+					}
+				end, harpoon:list().items),
+				format = function(item)
+					-- Custom formatter showing index
+					return {
+						{ tostring(item.idx) .. ": ",                 "Number" },
+						{ vim.fn.fnamemodify(item.file, ":t"),        "String" },
+						{ " " .. vim.fn.fnamemodify(item.file, ":h"), "Comment" },
+					}
 				end,
-				format = "text",
-			}
-
-			-- Define custom actions
-			local actions = {
-				harpoon_delete = {
-					fn = function(picker, item)
-						-- Your logic to delete the harpooned item
-						print("Deleting item:", item.text)
-					end,
-					desc = "Delete Harpooned Item",
-				},
-			}
-
-			Snacks.picker.pick("harpoon_source", {
-				title = "Harpooni",
-				prompt = ">",
-				show_empty = true,
-				--actions = actions,
-				win = {
-					list = {
-						keys = {
-							["dd"] = "harpoon_delete", -- Bind 'dd' to delete action
-						},
-					},
-				},
+				title = "Harpoon",
+				confirm = function(picker, item)
+					picker:close()
+					-- Custom action to jump using harpoon
+					harpoon:list():select(item.idx)
+				end,
+				preview = "file", -- Show file preview
 			})
 		end
 
+		--
+		-- -- Use Snacks.picker as a UI
+		-- local function toggle_picker(harpoon_files)
+		-- 	local file_paths = {}
+		-- 	for _, item in ipairs(harpoon_files.items) do
+		-- 		table.insert(file_paths, {
+		-- 			text = item.value,
+		-- 			file = item.value,
+		-- 		})
+		-- 	end
+		--
+		-- 	-- Register the custom source
+		-- 	Snacks.picker.sources.harpoon_source = {
+		-- 		finder = function()
+		-- 			return file_paths
+		-- 		end,
+		-- 		format = "text",
+		-- 	}
+		--
+		-- 	-- Define custom actions
+		-- 	local actions = {
+		-- 		harpoon_delete = {
+		-- 			fn = function(picker, item)
+		-- 				-- Your logic to delete the harpooned item
+		-- 				print("Deleting item:", item.text)
+		-- 			end,
+		-- 			desc = "Delete Harpooned Item",
+		-- 		},
+		-- 	}
+		--
+		-- 	Snacks.picker.pick("harpoon_source", {
+		-- 		title = "Harpooni",
+		-- 		prompt = ">",
+		-- 		show_empty = true,
+		-- 		--actions = actions,
+		-- 		win = {
+		-- 			list = {
+		-- 				keys = {
+		-- 					["dd"] = "harpoon_delete", -- Bind 'dd' to delete action
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 	})
+		-- end
+
 		vim.keymap.set("n", "<leader>hl", function()
-			toggle_picker(harpoon:list())
+			Snacks.picker.harpoon()
 		end, { desc = "Open harpoon window" })
 
 		-- Default UI
