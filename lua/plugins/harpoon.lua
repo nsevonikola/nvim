@@ -7,24 +7,30 @@ return {
 	config = function()
 		local harpoon = require("harpoon")
 
+		local function generate_harpoon_picker()
+			local file_paths = {}
+			for _, item in ipairs(harpoon:list().items) do
+				table.insert(file_paths, {
+					text = item.value,
+					file = item.value,
+				})
+			end
+			return file_paths
+		end
+
 		harpoon:setup({})
 
 		local sPicker = require("snacks.picker")
 		sPicker.harpoon = function()
 			Snacks.picker.pick({
-				items = vim.tbl_map(function(item, idx)
-					return {
-						file = item.value,
-						text = item.value,
-						idx = idx, -- Store original index
-					}
-				end, harpoon:list().items),
+
+				finder = generate_harpoon_picker,
 				format = function(item)
 					-- Custom formatter showing index
 					return {
-						{ tostring(item.idx) .. ": ",                 "Number" },
-						{ vim.fn.fnamemodify(item.file, ":t"),        "String" },
+						{ tostring(item.idx) .. ": ", "Number" },
 						{ " " .. vim.fn.fnamemodify(item.file, ":h"), "Comment" },
+						{ vim.fn.fnamemodify(item.file, ":t"), "String" },
 					}
 				end,
 				title = "Harpoon",
@@ -34,6 +40,35 @@ return {
 					harpoon:list():select(item.idx)
 				end,
 				preview = "file", -- Show file preview
+				win = {
+					input = {
+						keys = {
+							["dd"] = { "harpoon_delete", mode = { "n", "x" } },
+						},
+					},
+					list = {
+						keys = {
+							["dd"] = { "harpoon_delete", mode = { "n", "x" } },
+						},
+					},
+				},
+				actions = {
+					-- harpoon_delete = {
+					-- 	fn = function(picker, item)
+					-- 		-- Custom action to delete using harpoon
+					-- 		harpoon:list():delete(item.idx)
+					-- 		picker:refresh()
+					-- 	end,
+					-- 	desc = "Delete Harpooned Item",
+					-- },
+					harpoon_delete = function(picker, item)
+						local to_remove = item or picker:selected()
+						table.remove(harpoon:list().items, to_remove.idx)
+						picker:find({
+							refresh = true, -- refresh picker after removing values
+						})
+					end,
+				},
 			})
 		end
 
