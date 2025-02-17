@@ -29,8 +29,8 @@ return {
 					-- Custom formatter showing index
 					return {
 						{ tostring(item.idx) .. ": ", "Number" },
-						{ " " .. vim.fn.fnamemodify(item.file, ":h"), "Comment" },
 						{ vim.fn.fnamemodify(item.file, ":t"), "String" },
+						{ " " .. vim.fn.fnamemodify(item.file, ":h"), "Comment" },
 					}
 				end,
 				title = "Harpoon",
