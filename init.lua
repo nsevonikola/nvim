@@ -43,4 +43,5 @@ require("lazy").setup({
 	--require("plugins.hbac"),
 	require("plugins.barbecue"),
 	require("plugins.misc"),
+	require("plugins.copilot-chat"),
 })
