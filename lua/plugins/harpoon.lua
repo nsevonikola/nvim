@@ -25,14 +25,7 @@ return {
 			Snacks.picker.pick({
 
 				finder = generate_harpoon_picker,
-				format = function(item)
-					-- Custom formatter showing index
-					return {
-						{ tostring(item.idx) .. ": ", "Number" },
-						{ vim.fn.fnamemodify(item.file, ":t"), "String" },
-						{ " " .. vim.fn.fnamemodify(item.file, ":h"), "Comment" },
-					}
-				end,
+				format = SnacksFormatter,
 				title = "Harpoon",
 				confirm = function(picker, item)
 					picker:close()
@@ -40,6 +33,8 @@ return {
 					harpoon:list():select(item.idx)
 				end,
 				preview = "file", -- Show file preview
+				-- layout = "vertical",
+				layout = SnacksPickerLayout,
 				win = {
 					input = {
 						keys = {

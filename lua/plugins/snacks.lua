@@ -1,3 +1,43 @@
+SnacksPickerLayout = {
+	layout = {
+		width = 0.6,
+		min_width = 80,
+		height = 0.8,
+		min_height = 30,
+		box = "vertical",
+		border = "rounded",
+		title = "{title} {live} {flags}",
+		title_pos = "center",
+		{ win = "input", height = 1, border = "bottom" },
+		{ win = "list", border = "none" },
+		{ win = "preview", title = "{preview}", height = 0.7, border = "top" },
+	},
+}
+
+local function get_last_n_sections(path, n)
+	local sections = {}
+	for section in string.gmatch(path, "[^/\\]+") do
+		table.insert(sections, section)
+	end
+	local start_index = math.max(#sections - n + 1, 1)
+	return table.concat(sections, "/", start_index)
+end
+
+-- Formatter
+function SnacksFormatter(item)
+	local devicons = require("nvim-web-devicons")
+	local icon, icon_hl = devicons.get_icon(item.file, vim.fn.fnamemodify(item.file, ":e"))
+	-- Custom formatter showing index
+	local path_1 = vim.fn.fnamemodify(item.file, ":h")
+	local path_2 = get_last_n_sections(vim.fn.fnamemodify(item.file, ":h"), 6)
+	local shortest_path = #path_1 < #path_2 and path_1 or path_2
+	return {
+		{ icon and (icon .. " ") or "", icon_hl },
+		{ vim.fn.fnamemodify(item.file, ":t"), "String" },
+		{ " " .. shortest_path, "Comment" },
+	}
+end
+
 -- nvim v0.8.0
 return {
 	"folke/snacks.nvim",
@@ -37,8 +77,9 @@ return {
 					on_show = function()
 						vim.cmd.stopinsert()
 					end,
+					layout = SnacksPickerLayout,
 					finder = "buffers",
-					format = "buffer",
+					format = SnacksFormatter,
 					hidden = false,
 					unloaded = true,
 					current = true,
@@ -89,7 +130,10 @@ return {
 		{
 			"<C-p>",
 			function()
-				Snacks.picker.files()
+				Snacks.picker.files({
+					format = SnacksFormatter,
+					layout = SnacksPickerLayout,
+				})
 			end,
 			desc = "Find Files",
 		},
