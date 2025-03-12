@@ -46,6 +46,26 @@ return {
 				-- For more plugins integrations (https://github.com/catppuccin/nvim#integrations)
 			},
 			color_overrides = {},
+			custom_highlights = function(colors)
+				return {
+					TabLineSel = { bg = colors.pink },
+					CmpBorder = { fg = colors.surface2 },
+					Pmenu = { bg = colors.none },
+					["@keyword.export"] = {
+						fg = colors.red,
+					},
+					["@tag.attribute.tsx"] = {
+						cterm = {
+							italic = true,
+						},
+						fg = "#f5e0dc",
+						italic = true,
+					},
+					["@tag.delimiter"] = {
+						fg = "#f9e2af",
+					},
+				}
+			end,
 		})
 		vim.cmd("colorscheme catppuccin")
 	end,
