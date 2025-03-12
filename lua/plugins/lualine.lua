@@ -5,7 +5,7 @@ return {
 		local lualine = require("lualine")
 
 		local colors = {
-			bg = "#34343b",
+			bg = "#1e1e2e", -- "#34343b",
 			fg = "#7b7b7b",
 			mbg = "#262537",
 			yellow = "#ff6300",
@@ -51,13 +51,16 @@ return {
 				-- Disable sections and component separators
 				component_separators = "",
 				section_separators = "",
-				theme = "auto",
+				--theme = "auto",
 				globalstatus = true,
 				-- We are going to use lualine_c an lualine_x as left and
 				-- right section. Both are highlighted by c theme .  So we
 				-- are just setting default looks o statusline
 				-- normal = { a = { bg = colors.mbg }, b = { bg = colors.mbg }, c = { bg = colors.mbg } },
 				-- inactive = { c = { bg = light_colors.bg } },
+
+				-- Catppuccin
+				theme = "catppuccin",
 			},
 			sections = {
 				-- these are to remove the defaults
