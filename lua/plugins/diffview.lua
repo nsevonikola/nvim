@@ -31,5 +31,15 @@ return {
 			end,
 			desc = "Diffs for current [F]ile",
 		},
+		{
+			"<leader>gL",
+			function()
+				local word = vim.fn.expand("<cword>")
+				local file = vim.fn.expand("%:p")
+				local cmd = "DiffviewFileHistory -L:" .. word .. ":" .. file
+				toggle_diffview(cmd)
+			end,
+			desc = "Diff history for current [L]ine",
+		},
 	},
 }
