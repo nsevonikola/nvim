@@ -51,6 +51,7 @@ return {
 					TabLineSel = { bg = colors.pink },
 					CmpBorder = { fg = colors.surface2 },
 					Pmenu = { bg = colors.none },
+					Operator = { fg = colors.pink },
 					["@keyword.export"] = {
 						fg = colors.red,
 					},
@@ -58,7 +59,7 @@ return {
 						cterm = {
 							italic = true,
 						},
-						fg = "#f5e0dc",
+						fg = "#a6adc8",
 						italic = true,
 					},
 					["@tag.delimiter"] = {
