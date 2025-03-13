@@ -26,6 +26,7 @@ require("lazy").setup({
 	require("plugins.snacks"),
 	require("plugins.colorscheme"),
 	require("plugins.lazygit"),
+	require("plugins.diffview"),
 	require("plugins.noice"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
