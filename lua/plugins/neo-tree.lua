@@ -27,7 +27,7 @@ return {
 			end,
 			keys = {
 				{ "<leader>w", ":Neotree toggle float reveal<CR>", silent = true, desc = "Float File Explorer" },
-				{ "<leader>e", ":Neotree toggle position=left<CR>", silent = true, desc = "Left File Explorer" },
+				-- testing snacks tree { "<leader>e", ":Neotree toggle position=left<CR>", silent = true, desc = "Left File Explorer" },
 				{
 					"<leader>ngs",
 					":Neotree float git_status<CR>",
@@ -117,15 +117,15 @@ return {
 					required_width = 64, -- min width of window required to show this column
 				},
 				type = {
-					enabled = true,
+					enabled = false,
 					required_width = 122, -- min width of window required to show this column
 				},
 				last_modified = {
-					enabled = true,
+					enabled = false,
 					required_width = 88, -- min width of window required to show this column
 				},
 				created = {
-					enabled = true,
+					enabled = false,
 					required_width = 110, -- min width of window required to show this column
 				},
 				symlink_target = {

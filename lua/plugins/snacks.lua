@@ -44,6 +44,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		explorer = {},
 		notifier = {
 			enabled = true,
 		},
@@ -136,6 +137,20 @@ return {
 				})
 			end,
 			desc = "Find Files",
+		},
+		{
+			"<leader>ee",
+			function()
+				Snacks.explorer.open()
+			end,
+			desc = "Explore Files",
+		},
+		{
+			"<leader>eb",
+			function()
+				Snacks.explorer.open()
+			end,
+			desc = "Explore Buffers",
 		},
 		{
 			"<leader>sf",
