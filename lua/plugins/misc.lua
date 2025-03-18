@@ -1,6 +1,18 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
 	{
+		"shortcuts/no-neck-pain.nvim",
+		config = function()
+			require("no-neck-pain").setup({
+				width = 140,
+			})
+			vim.cmd("NoNeckPain")
+		end,
+	},
+	{
+		"smithbm2316/centerpad.nvim",
+	},
+	{
 		-- New setup? Run :Copilot setop
 		"github/copilot.vim",
 	},

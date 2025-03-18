@@ -44,7 +44,9 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		explorer = {},
+		explorer = {
+			enabled = true,
+		},
 		notifier = {
 			enabled = true,
 		},
