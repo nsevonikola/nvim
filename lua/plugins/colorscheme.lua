@@ -10,6 +10,11 @@ return {
 				cmp = true,
 				gitsigns = true,
 				nvimtree = true,
+				neotree = {
+					enabled = true,
+					show_root = false,
+					transparent_panel = false,
+				},
 				treesitter = true,
 				notify = false,
 				mini = {
@@ -52,22 +57,45 @@ return {
 					CmpBorder = { fg = colors.surface2 },
 					Pmenu = { bg = colors.none },
 					Operator = { fg = colors.pink },
+					["@tag.tsx"] = {
+						fg = colors.pink,
+					},
 					["@keyword.export"] = {
 						fg = colors.red,
 					},
+					-- ["@function.tsx"] = {
+					-- 	fg = colors.yellow,
+					-- },
+					-- ["@lsp.type.function.typescriptreact"] = {
+					-- 	fg = colors.yellow,
+					-- },
 					["@tag.attribute.tsx"] = {
 						cterm = {
 							italic = true,
 						},
-						fg = "#a6adc8",
+						fg = colors.text,
 						italic = true,
 					},
-					["@tag.delimiter"] = {
-						fg = "#f9e2af",
+					["@tag.delimiter.tsx"] = {
+						fg = colors.yellow,
+					},
+					["@variable.parameter.tsx"] = {
+						fg = colors.maroon,
+						italic = true,
+					},
+					["@lsp.type.parameter.typescriptreact"] = {
+						fg = colors.maroon, -- Targets same as `@variable.parameter.tsx`
+						italic = true,
 					},
 				}
 			end,
 		})
+
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#bac2de" }) -- Directory names
+		vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#8839ef" }) -- Directory icons
+		vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#bac2de" }) -- File names
+		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#8839ef" }) -- File icons
+
 		vim.cmd("colorscheme catppuccin")
 	end,
 }
