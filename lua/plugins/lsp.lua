@@ -5,6 +5,7 @@ return { -- LSP Configuration & Plugins
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"saghen/blink.cmp",
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -77,8 +78,14 @@ return { -- LSP Configuration & Plugins
 			end,
 		})
 
+		local blink_cmp = require("blink.cmp")
+
+		-- Add blink.cmp capabilities to all language servers
+		local lsp_capabilities = blink_cmp.get_lsp_capabilities()
+
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		capabilities = vim.tbl_deep_extend("force", capabilities, lsp_capabilities)
+		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		-- Enable the following language servers
 		local servers = {
