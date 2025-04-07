@@ -27,6 +27,10 @@ return {
 				finder = generate_harpoon_picker,
 				format = SnacksFormatter,
 				title = "Harpoon",
+				on_show = function()
+					-- I always want my buffers picker to start in normal mode
+					vim.cmd.stopinsert()
+				end,
 				confirm = function(picker, item)
 					picker:close()
 					-- Custom action to jump using harpoon
@@ -38,12 +42,12 @@ return {
 				win = {
 					input = {
 						keys = {
-							["dd"] = { "harpoon_delete", mode = { "n", "x" } },
+							["d"] = { "harpoon_delete", mode = { "n", "x" } },
 						},
 					},
 					list = {
 						keys = {
-							["dd"] = { "harpoon_delete", mode = { "n", "x" } },
+							["d"] = { "harpoon_delete", mode = { "n", "x" } },
 						},
 					},
 				},
