@@ -19,6 +19,7 @@ vim.o.scrolloff = 14                   -- minimal number of screen lines to keep
 vim.o.sidescrolloff = 8                -- minimal number of screen columns either side of cursor if wrap is `false`
 vim.wo.number = true                   -- Make line numbers default
 vim.o.relativenumber = true            -- set relative numbered lines
+vim.opt.fileformat = "dos"             -- sets CRLF
 
 -- Grieg
 vim.o.numberwidth = 2   -- set number column width to 2 {default 4}
