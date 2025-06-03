@@ -160,6 +160,7 @@ return {
 						cond = conditions.hide_line_col,
 						-- icon = "|",
 					},
+					{ "o:fileformat", fmt = string.upper, color = { fg = colors.fg, gui = "bold" } },
 					{
 						"o:encoding", -- option component same as &encoding in viml
 						fmt = string.upper, -- I'm not sure why it's upper case either ;)
