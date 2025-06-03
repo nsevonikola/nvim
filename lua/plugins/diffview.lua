@@ -9,6 +9,23 @@ end
 return {
 	"sindrets/diffview.nvim",
 	command = "DiffviewOpen",
+	config = function()
+		require("diffview").setup({
+			view = {
+				-- Define the layout for the diff view
+				default = {
+					layout = "diff2_horizontal", -- Options: "diff2_horizontal", "diff2_vertical", "diff3_horizontal", "diff3_vertical", "diff4_mixed"
+				},
+				merge_tool = {
+					layout = "diff3_vertical", -- Layout for merge conflicts
+					disable_diagnostics = true, -- Disable diagnostics in the merge tool
+				},
+				file_history = {
+					layout = "diff2_horizontal", -- Layout for file history
+				},
+			},
+		})
+	end,
 	keys = {
 		{
 			"<leader>gd",
