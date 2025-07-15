@@ -227,22 +227,10 @@ return { -- LSP Configuration & Plugins
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		local lspconfig = require("lspconfig")
-		local lsp_attach = function(client, bufnr)
-			-- Create your keybindings here...
-		end
-
-		require("mason-lspconfig").setup_handlers({
-			function(server_name)
-				-- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
-				if server_name ~= "jdtls" then
-					lspconfig[server_name].setup({
-						on_attach = lsp_attach,
-						capabilities = capabilities,
-					})
-				end
-			end,
-		})
+		-- local lspconfig = require("lspconfig")
+		-- local lsp_attach = function(client, bufnr)
+		-- 	-- Create your keybindings here...
+		-- end
 
 		require("mason-lspconfig").setup({
 			handlers = {
@@ -252,9 +240,29 @@ return { -- LSP Configuration & Plugins
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
+
+					print("Setting up LSP server: " .. server_name)
+
+					-- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
+					if server_name ~= "jdtls" then
+						require("lspconfig")[server_name].setup(server)
+					end
 				end,
 			},
 		})
+
+		-- require("mason-lspconfig").setup_handlers({
+		-- 	handlers = {
+		-- 		function(server_name)
+		-- 			-- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
+		-- 			if server_name ~= "jdtls" then
+		-- 				lspconfig[server_name].setup({
+		-- 					on_attach = lsp_attach,
+		-- 					capabilities = capabilities,
+		-- 				})
+		-- 			end
+		-- 		end,
+		-- 	},
+		-- })
 	end,
 }

@@ -21,13 +21,29 @@ else
 	system_os = "linux"
 end
 
+-- unix paths
+-- local java_test_path = home .. "\\AppData\\Local\\nvim-data\\mason\\share\\java-test\\*.jar"
+-- local java_bundles_path = home .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"
+-- local java_agent_path = home .. "/.local/share/nvim/mason/share/jdtls/lombok.jar"
+-- local java_equinox_path = home .. "/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher.jar"
+-- local java_config_path = home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. system_os
+
+-- windows paths
+local java_test_path = home .. "/.local/share/nvim/mason/share/java-test/*.jar"
+local java_bundles_path = home
+	.. "\\AppData\\Local\\nvim-data\\mason\\share\\java-debug-adapter\\com.microsoft.java.debug.plugin.jar"
+local java_agent_path = home .. "\\AppData\\Local\\nvim-data\\mason\\share\\jdtls\\lombok.jar"
+local java_equinox_path = home
+	.. "\\AppData\\Local\\nvim-data\\mason\\share\\jdtls\\plugins\\org.eclipse.equinox.launcher.jar"
+local java_config_path = home .. "\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\config_" .. system_os
+
 -- Needed for debugging
 local bundles = {
-	vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"),
+	vim.fn.glob(java_bundles_path),
 }
 
 -- Needed for running/debugging unit tests
-vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path, 1), "\n"))
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -40,19 +56,19 @@ local config = {
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-javaagent:" .. home .. "/.local/share/nvim/mason/share/jdtls/lombok.jar",
+		"-javaagent:" .. java_agent_path,
 		"-Xmx4g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-
 		-- Eclipse jdtls location
 		"-jar",
-		home .. "/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher.jar",
+		-- select jar path based on OS
+		java_equinox_path,
 		"-configuration",
-		home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. system_os,
+		java_config_path,
 		"-data",
 		workspace_dir,
 	},
@@ -66,7 +82,7 @@ local config = {
 	settings = {
 		java = {
 			-- TODO Replace this with the absolute path to your main java version (JDTLS requires JDK 21 or higher)
-			home = "C:/Program Files/Java/jdk-24",
+			home = "C:\\Program Files\\Java\\jdk-24",
 			eclipse = {
 				downloadSources = true,
 			},
@@ -77,7 +93,7 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-24",
-						path = "C:/Program Files/Java/jdk-24",
+						path = "C:\\Program Files\\Java\\jdk-24",
 					},
 				},
 			},
@@ -134,7 +150,7 @@ local config = {
 		},
 	},
 	-- Needed for auto-completion with method signatures and placeholders
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
 	flags = {
 		allow_incremental_sync = true,
 	},
