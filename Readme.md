@@ -16,3 +16,11 @@ Any nerd font, i like _JetBransMono_
 
 - fd
 - ripgrep
+
+### LazyGit
+
+- Install lazygit from choco or apt-get or brew
+
+### For java development
+
+JDK 17 or above

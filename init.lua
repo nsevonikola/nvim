@@ -45,4 +45,5 @@ require("lazy").setup({
 	require("plugins.barbecue"),
 	require("plugins.misc"),
 	require("plugins.copilot-chat"),
+	require("plugins.nvim-jdtls"), -- Java LSP configuration
 })
