@@ -8,9 +8,9 @@ SnacksPickerLayout = {
 		border = "rounded",
 		title = "{title} {live} {flags}",
 		title_pos = "center",
-		{ win = "input",   height = 1,          border = "bottom" },
-		{ win = "list",    border = "none" },
-		{ win = "preview", title = "{preview}", height = 0.7,     border = "top" },
+		{ win = "input", height = 1, border = "bottom" },
+		{ win = "list", border = "none" },
+		{ win = "preview", title = "{preview}", height = 0.7, border = "top" },
 	},
 }
 
@@ -32,9 +32,9 @@ function SnacksFormatter(item)
 	local path_2 = get_last_n_sections(vim.fn.fnamemodify(item.file, ":h"), 6)
 	local shortest_path = #path_1 < #path_2 and path_1 or path_2
 	return {
-		{ icon and (icon .. " ") or "",        icon_hl },
+		{ icon and (icon .. " ") or "", icon_hl },
 		{ vim.fn.fnamemodify(item.file, ":t"), "String" },
-		{ " " .. shortest_path,                "Comment" },
+		{ " " .. shortest_path, "Comment" },
 	}
 end
 
