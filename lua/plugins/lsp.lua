@@ -241,8 +241,6 @@ return { -- LSP Configuration & Plugins
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-					print("Setting up LSP server: " .. server_name)
-
 					-- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
 					if server_name ~= "jdtls" then
 						require("lspconfig")[server_name].setup(server)
