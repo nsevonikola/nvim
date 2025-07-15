@@ -227,11 +227,6 @@ return { -- LSP Configuration & Plugins
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		-- local lspconfig = require("lspconfig")
-		-- local lsp_attach = function(client, bufnr)
-		-- 	-- Create your keybindings here...
-		-- end
-
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
@@ -248,19 +243,5 @@ return { -- LSP Configuration & Plugins
 				end,
 			},
 		})
-
-		-- require("mason-lspconfig").setup_handlers({
-		-- 	handlers = {
-		-- 		function(server_name)
-		-- 			-- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
-		-- 			if server_name ~= "jdtls" then
-		-- 				lspconfig[server_name].setup({
-		-- 					on_attach = lsp_attach,
-		-- 					capabilities = capabilities,
-		-- 				})
-		-- 			end
-		-- 		end,
-		-- 	},
-		-- })
 	end,
 }
