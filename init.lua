@@ -25,13 +25,11 @@ require("lazy").setup({
 	require("plugins.neo-tree"),
 	require("plugins.snacks"),
 	require("plugins.colorscheme"),
-	--require("plugins.lazygit"),
 	require("plugins.diffview"),
 	require("plugins.noice"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
 	require("plugins.treesitter-context"),
-	--require("plugins.telescope"),
 	require("plugins.lsp"),
 	require("plugins.autocompletion"),
 	require("plugins.none-ls"),
@@ -43,7 +41,7 @@ require("lazy").setup({
 	--require("plugins.smart-open"),
 	--require("plugins.hbac"),
 	require("plugins.barbecue"),
-	require("plugins.misc"),
 	require("plugins.copilot-chat"),
 	require("plugins.nvim-jdtls"), -- Java LSP configuration
+	require("plugins.misc"),
 })
