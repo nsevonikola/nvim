@@ -93,6 +93,15 @@ return { -- LSP Configuration & Plugins
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			-- ts_ls = {},
 			omnisharp = {},
+			jdtls = {
+				settings = {
+					java = {
+						format = {
+							enabled = true,
+						},
+					},
+				},
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},

@@ -25,7 +25,7 @@ require("lazy").setup({
 	require("plugins.neo-tree"),
 	require("plugins.snacks"),
 	require("plugins.colorscheme"),
-	require("plugins.lazygit"),
+	--require("plugins.lazygit"),
 	require("plugins.diffview"),
 	require("plugins.noice"),
 	require("plugins.lualine"),
