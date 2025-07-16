@@ -16,6 +16,10 @@ elseif vim.fn.has("unix") == 1 then
 	system_os = "linux"
 elseif vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 	system_os = "win"
+	vim.opt.shellslash = false -- Enable shellslash for Windows compatibility
+	vim.defer_fn(function()
+		vim.opt.shellslash = false
+	end, 5000)
 else
 	print("OS not found, defaulting to 'linux'")
 	system_os = "linux"

@@ -43,5 +43,7 @@ require("lazy").setup({
 	require("plugins.barbecue"),
 	require("plugins.copilot-chat"),
 	require("plugins.nvim-jdtls"), -- Java LSP configuration
+	require("plugins.nvim-dap-ui"),
+	require("plugins.nvim-dap-virtual-text"),
 	require("plugins.misc"),
 })
