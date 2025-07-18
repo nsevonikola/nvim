@@ -103,6 +103,7 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
+			checkstyle = {},
 			java_debug_adapter = {},
 			java_test = {},
 			lua_ls = {
