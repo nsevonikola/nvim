@@ -6,44 +6,65 @@ local setupKeymapping = function()
 	vim.keymap.set("n", "<leader>Db", function()
 		dap.toggle_breakpoint()
 	end, { desc = "Toggle breakpoint" })
+
 	vim.keymap.set("n", "<leader>Dc", function()
 		dap.clear_breakpoints()
 	end, { desc = "Clear breakpoint" })
+
+	vim.keymap.set("n", "<leader>Dq", function()
+		dapui.close()
+	end, { desc = "Close debugger" })
 
 	-- Set up key mappings for DAP UI ([n]ew)
 	vim.keymap.set("n", "<leader>Dn", function()
 		dap.continue()
 
-		vim.keymap.set("n", "q", function()
-			dap.terminate()
-			dapui.close()
-		end, { desc = "Terminate and quit" })
+		vim.api.nvim_buf_set_keymap(0, "n", "q", "", {
+			callback = function()
+				dap.terminate()
+				dapui.close()
+				vim.cmd("edit " .. vim.api.nvim_buf_get_name(0))
+			end,
+			desc = "Terminate and quit",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "b", "", {
+			callback = function()
+				dap.toggle_breakpoint()
+			end,
+			desc = "Breakpoint",
+		})
 
-		vim.keymap.set("n", "b", function()
-			dap.toggle_breakpoint()
-		end, { desc = "Breakpoint" })
-
-		vim.keymap.set("n", "c", function()
-			dap.continue()
-		end, { desc = "Continue" })
-
-		vim.keymap.set("n", "i", function()
-			dap.step_into()
-		end, { desc = "Step into" })
-
-		vim.keymap.set("n", "o", function()
-			dap.step_out()
-		end, { desc = "Step out" })
-
-		vim.keymap.set("n", "s", function()
-			dap.step_over()
-		end, { desc = "Step over" })
-
-		vim.keymap.set("n", "r", function()
-			dap.repl.open()
-		end, { desc = "Open REPL" })
-
-		vim.keymap.set("n", "f", "<cmd>DapuiFloatElement<CR>", { desc = "Float Element" })
+		vim.api.nvim_buf_set_keymap(0, "n", "c", "", {
+			callback = function()
+				dap.continue()
+			end,
+			desc = "Continue",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "i", "", {
+			callback = function()
+				dap.step_into()
+			end,
+			desc = "Step into",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "o", "", {
+			callback = function()
+				dap.step_out()
+			end,
+			desc = "Step out",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "s", "", {
+			callback = function()
+				dap.step_over()
+			end,
+			desc = "Step over",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "r", "", {
+			callback = function()
+				dap.repl.open()
+			end,
+			desc = "Open REPL",
+		})
+		vim.api.nvim_buf_set_keymap(0, "n", "f", "<cmd>DapuiFloatElement<CR>", { desc = "Float Element" })
 	end, { desc = "Toggle DAP UI" })
 end
 
