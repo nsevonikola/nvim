@@ -40,13 +40,16 @@ local java_agent_path = home .. "\\AppData\\Local\\nvim-data\\mason\\share\\jdtl
 local java_equinox_path = home
 	.. "\\AppData\\Local\\nvim-data\\mason\\share\\jdtls\\plugins\\org.eclipse.equinox.launcher.jar"
 local java_config_path = home .. "\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\config_" .. system_os
+-- Check vscode-java-test installation in junit testing. Install it and move it to extensions folder
+-- like below
+local java_vscode_test_path = home .. "\\.vscode\\extensions\\vscode-java-test\\server\\*.jar"
 
 -- Needed for debugging
 local bundles = {
 	vim.fn.glob(java_bundles_path),
 }
-
 -- Needed for running/debugging unit tests
+vim.list_extend(bundles, vim.split(vim.fn.glob(java_vscode_test_path, 1), "\n"))
 vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path, 1), "\n"))
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
@@ -138,6 +141,24 @@ local config = {
 					"com",
 					"org",
 				},
+			},
+			stepFilters = {
+				skipClasses = {
+
+					-- Filters out the following packages from the debugging stack trace
+					-- This is useful to avoid stepping into library code
+					-- TODO Adjust these filters based on your needs
+					"java.*",
+					"javax.*",
+					"sun.*",
+					"com.sun.*",
+					"org.mockito.*",
+					"org.springframework.*",
+					"org.junit.*",
+				},
+				skipSynthetics = true,
+				skipStaticInitializers = true,
+				skipConstructors = true,
 			},
 			sources = {
 				organizeImports = {
