@@ -1,4 +1,5 @@
 -- Debugging Support
+
 local setupKeymapping = function()
 	local dapui = require("dapui")
 	local dap = require("dap")
@@ -6,6 +7,14 @@ local setupKeymapping = function()
 	vim.keymap.set("n", "<leader>Db", function()
 		dap.toggle_breakpoint()
 	end, { desc = "Toggle breakpoint" })
+
+	vim.keymap.set("n", "<leader>Dtc", function()
+		require("jdtls").test_class()
+	end, { desc = "[D]ebug [t]est [c]lass" })
+
+	vim.keymap.set("n", "<leader>Dtm", function()
+		require("jdtls").test_nearest_method()
+	end, { desc = "[D]ebug [t]est [m]ethod" })
 
 	vim.keymap.set("n", "<leader>Dc", function()
 		dap.clear_breakpoints()
@@ -18,54 +27,35 @@ local setupKeymapping = function()
 	-- Set up key mappings for DAP UI ([n]ew)
 	vim.keymap.set("n", "<leader>Dn", function()
 		dap.continue()
+	end, { desc = "Start debugging" })
 
-		vim.api.nvim_buf_set_keymap(0, "n", "q", "", {
-			callback = function()
-				dap.terminate()
-				dapui.close()
-				vim.cmd("edit " .. vim.api.nvim_buf_get_name(0))
-			end,
-			desc = "Terminate and quit",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "b", "", {
-			callback = function()
-				dap.toggle_breakpoint()
-			end,
-			desc = "Breakpoint",
-		})
+	vim.keymap.set("n", "<F5>", function()
+		require("dap").continue()
+	end, { desc = "DAP Continue" })
 
-		vim.api.nvim_buf_set_keymap(0, "n", "c", "", {
-			callback = function()
-				dap.continue()
-			end,
-			desc = "Continue",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "i", "", {
-			callback = function()
-				dap.step_into()
-			end,
-			desc = "Step into",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "o", "", {
-			callback = function()
-				dap.step_out()
-			end,
-			desc = "Step out",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "s", "", {
-			callback = function()
-				dap.step_over()
-			end,
-			desc = "Step over",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "r", "", {
-			callback = function()
-				dap.repl.open()
-			end,
-			desc = "Open REPL",
-		})
-		vim.api.nvim_buf_set_keymap(0, "n", "f", "<cmd>DapuiFloatElement<CR>", { desc = "Float Element" })
-	end, { desc = "Toggle DAP UI" })
+	vim.keymap.set("n", "<F2>", function()
+		require("dap").step_over()
+	end, { desc = "DAP Step Over" })
+
+	vim.keymap.set("n", "<F3>", function()
+		require("dap").step_into()
+	end, { desc = "DAP Step Into" })
+
+	vim.keymap.set("n", "<F4>", function()
+		require("dap").step_out()
+	end, { desc = "DAP Step Out" })
+
+	vim.keymap.set("n", "<F9>", function()
+		require("dap").toggle_breakpoint()
+	end, { desc = "DAP Toggle Breakpoint" })
+
+	vim.keymap.set("n", "<leader>dr", function()
+		require("dap").repl.open()
+	end, { desc = "DAP REPL" })
+
+	vim.keymap.set("n", "<leader>dl", function()
+		require("dap").run_last()
+	end, { desc = "DAP Run Last" })
 end
 
 return {
@@ -79,7 +69,7 @@ return {
 		"nvim-neotest/nvim-nio",
 		-- https://github.com/theHamsta/nvim-dap-virtual-text
 		"theHamsta/nvim-dap-virtual-text", -- inline variable text while debugging
-		"folke/snacks.nvim",         -- snacks integration with dap
+		"folke/snacks.nvim", -- snacks integration with dap
 	},
 	opts = {
 		controls = {
