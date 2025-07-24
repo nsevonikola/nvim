@@ -1,3 +1,5 @@
+local java_version = "21" -- Adjust this to your installed Java version
+
 -- FIND AND ADJUST ALL THE 'TODOS' BELOW
 
 -- JDTLS (Java LSP) configuration
@@ -89,7 +91,7 @@ local config = {
 	settings = {
 		java = {
 			-- TODO Replace this with the absolute path to your main java version (JDTLS requires JDK 21 or higher)
-			home = "C:\\Program Files\\Java\\jdk-24",
+			home = "C:\\Program Files\\Java\\jdk-" .. java_version,
 			eclipse = {
 				downloadSources = true,
 			},
@@ -99,8 +101,8 @@ local config = {
 				-- The runtimes' name parameter needs to match a specific Java execution environments.  See https://github.com/eclipse-jdtls/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request and search "ExecutionEnvironment".
 				runtimes = {
 					{
-						name = "JavaSE-24",
-						path = "C:\\Program Files\\Java\\jdk-24",
+						name = "JavaSE-" .. java_version,
+						path = "C:\\Program Files\\Java\\jdk-" .. java_version,
 					},
 				},
 			},
@@ -155,6 +157,7 @@ local config = {
 					"org.mockito.*",
 					"org.springframework.*",
 					"org.junit.*",
+					"jdk.internal.*",
 				},
 				skipSynthetics = true,
 				skipStaticInitializers = true,

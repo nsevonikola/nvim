@@ -18,6 +18,9 @@ return {
 				"stylua", -- lua formatter
 				"eslint_d", -- ts/js linter
 				"shfmt",
+				-- for java linting
+				"checkstyle", -- java
+				-- "sonarlint", -- java -- not tested yet
 				--"checkmake", -- python
 				--"ruff", -- python
 			},
