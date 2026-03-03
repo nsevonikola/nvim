@@ -41,7 +41,9 @@ require("lazy").setup({
 	--require("plugins.smart-open"),
 	--require("plugins.hbac"),
 	require("plugins.barbecue"),
-	require("plugins.copilot-chat"),
+	--require("plugins.copilot-chat"),
+	require("plugins.avante"), -- cursor style ai claude-4.5
+	require("plugins.codecompletion"), -- ai code completion claude-4.5
 	require("plugins.nvim-jdtls"), -- Java LSP configuration
 	require("plugins.nvim-dap-ui"),
 	require("plugins.nvim-dap-virtual-text"),

@@ -205,7 +205,7 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
-			--tailwindcss = {},
+			tailwindcss = {},
 			jsonls = {},
 			sqlls = {},
 			terraformls = {},
