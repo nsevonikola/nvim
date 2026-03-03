@@ -35,3 +35,8 @@ of the installed JDK version.
 
 Debug junit tests. Either whole classes or individual test methods
 [Installlation and information here](https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap)
+
+## Build Avante
+
+`cd ~/.local/share/nvim/lazy/avante.nvim`
+`make`

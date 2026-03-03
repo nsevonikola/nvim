@@ -6,7 +6,7 @@ return {
 			providers = {
 				claude = {
 					api_key = os.getenv("ANTHROPIC_API_KEY"),
-					model = "claude-4.6-sonnet",
+					model = "claude-sonnet-4-6",
 					completion = {
 						enabled = true,
 					},

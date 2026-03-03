@@ -1,6 +1,7 @@
 return {
 	"yetone/avante.nvim",
 	event = "VeryLazy",
+	lazy = false,
 	build = "make BUILD_FROM_SOURCE=true", -- important: downloads avante_templates / tokenizers
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -13,13 +14,25 @@ return {
 		-- make sure summary etc. also use Claude, not OpenAI (optional but nice)
 		memory_summary_provider = "claude",
 
+		-- Configure keybindings for chat submission
+		mappings = {
+			submit = {
+				normal = "<CR>",
+				insert = "<C-CR>",
+			},
+			-- Optional: Add other useful mappings
+			ask = "<leader>aa",
+			edit = "<leader>ae",
+			refresh = "<leader>ar",
+		},
+
 		-- NEW: provider configs live here now (per migration guide)
 		-- all Claude-specific options must be under providers.claude
 		providers = {
 			claude = {
 				api_key = os.getenv("ANTHROPIC_API_KEY"),
 				endpoint = "https://api.anthropic.com",
-				model = "claude-4.6-sonnet", -- your chosen Sonnet model id
+				model = "claude-sonnet-4-20250514", -- "claude-sonnet-4-6", -- doesnt work currently with avante
 				timeout = 30000,
 				extra_request_body = {
 					temperature = 0.2,
