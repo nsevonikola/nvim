@@ -47,7 +47,34 @@ return {
 					columns = {
 						{ "label", "label_description", gap = 1 },
 						{ "kind_icon", "kind", gap = 1 },
-						{ "source_name" },
+						{ "source_path", gap = 1 },
+					},
+					components = {
+						source_path = {
+							text = function(ctx)
+								local item = ctx.item
+
+								-- Try different fields that might contain import info
+								if item.data and item.data.entryNames and #item.data.entryNames > 0 then
+									-- TypeScript-tools specific structure
+									local entry = item.data.entryNames[1]
+									if entry.source then
+										return entry.source
+									elseif entry.data and entry.data.moduleSpecifier then
+										return entry.data.moduleSpecifier
+									end
+								elseif item.detail then
+									return item.detail
+								elseif item.labelDetails and item.labelDetails.description then
+									return item.labelDetails.description
+								elseif item.data and item.data.moduleSpecifier then
+									return item.data.moduleSpecifier
+								elseif item.data and item.data.source then
+									return item.data.source
+								end
+								return ""
+							end,
+						},
 					},
 				},
 			},
