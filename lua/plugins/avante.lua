@@ -13,6 +13,7 @@ return {
 		provider = "claude",
 		-- make sure summary etc. also use Claude, not OpenAI (optional but nice)
 		memory_summary_provider = "claude",
+		mode = "legacy",
 
 		-- Configure keybindings for chat submission
 		mappings = {
@@ -44,5 +45,7 @@ return {
 			-- explicitly disable OpenAI if you don’t want accidental calls
 			openai = nil,
 		},
+		disabled_tools = { "web_search", "rag_search" }, -- if you don’t need them
+		web_search_engine = { enabled = false },
 	},
 }
